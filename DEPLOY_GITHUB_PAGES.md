@@ -11,19 +11,21 @@ This project is ready to publish the landing page from GitHub Pages using:
 Files already added:
 
 - `.github/workflows/deploy-pages.yml`
-- `landing-page/CNAME`
 - `landing-page/.nojekyll`
 
 The workflow deploys the contents of `landing-page/` to GitHub Pages on every push to `main`.
+
+Important:
+
+- this repo publishes through a GitHub Actions workflow
+- with GitHub Actions publishing, the custom domain is set in GitHub Pages settings or via the Pages API
+- a `CNAME` file is not required for this workflow-based setup and is ignored by GitHub Pages
 
 ## GitHub steps
 
 1. Create a new GitHub repository under the `JuriBuora` account.
 2. Push this project to the `main` branch of that repository.
-3. In GitHub:
-   - open `Settings`
-   - open `Pages`
-   - under `Build and deployment`, choose `GitHub Actions`
+3. Create or enable the Pages site with build type `workflow`.
 4. Let the workflow run once.
 
 After the first successful run, GitHub Pages should publish a default Pages URL under the `github.io` host for the repository.
@@ -57,8 +59,6 @@ In the GitHub Pages settings for the repository:
 2. save
 3. wait for DNS check to pass
 4. then enable `Enforce HTTPS`
-
-The `landing-page/CNAME` file already matches this domain.
 
 ## Important note
 
