@@ -1,0 +1,10 @@
+# Publish only the website and deployment files from this mixed local project.
+*
+
+!/.gitignore
+!/.github/
+!/.github/workflows/
+!/.github/workflows/deploy-pages.yml
+!/DEPLOY_GITHUB_PAGES.md
+!/landing-page/
+!/landing-page/**
