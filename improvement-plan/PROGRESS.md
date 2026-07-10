@@ -21,3 +21,4 @@
 2026-07-10  04-funnel-landing task 4  DONE  intake.js validation/success verified; no blocker logged
 2026-07-10  04-funnel-landing task 5  DONE  1ee5a7f
 2026-07-10  04-funnel-landing task 6  DONE  1ee5a7f
+2026-07-10  claude-review  DONE  d3bb0a4 (verified all 01-04 output, re-ran PDF/validator/landing-page tests, fixed .gitignore gap that left templates/audit-report-template.md and other source docs never committed to git)
