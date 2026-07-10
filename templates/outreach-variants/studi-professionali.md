@@ -12,7 +12,7 @@ Buongiorno,
 
 {{OSSERVAZIONE}}
 
-Faccio check-up pratici per studi professionali: guardo se {{URL}} comunica con chiarezza servizi, recapiti e un'immagine affidabile ai nuovi clienti, poi preparo un report PDF con priorità chiare. Il prezzo è 49 euro.
+Faccio check-up pratici per studi professionali: guardo se {{URL}} comunica con chiarezza servizi, recapiti e un'immagine affidabile ai nuovi clienti, poi preparo un report PDF con priorità chiare. Il prezzo è €49.
 
 Posso mandarti un esempio senza impegno?
 

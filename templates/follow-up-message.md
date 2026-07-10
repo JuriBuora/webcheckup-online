@@ -16,7 +16,7 @@ Ciao,
 
 se ti interessa senza impegnarti, posso guardare 2-3 punti di {{URL}} e dirti cosa salterebbe subito all'occhio a un cliente che arriva da telefono.
 
-Poi decidi tu se vuoi il report completo da 49 euro.
+Poi decidi tu se vuoi il report completo da €49.
 
 Juri
 

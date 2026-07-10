@@ -12,7 +12,7 @@ Buongiorno,
 
 {{OSSERVAZIONE}}
 
-Faccio check-up pratici per ristoranti e locali: guardo se menu, orari e prenotazioni funzionano bene da telefono su {{URL}}, poi preparo un report PDF con priorità chiare. Il prezzo è 49 euro.
+Faccio check-up pratici per ristoranti e locali: guardo se menu, orari e prenotazioni funzionano bene da telefono su {{URL}}, poi preparo un report PDF con priorità chiare. Il prezzo è €49.
 
 Posso mandarti un esempio senza impegno?
 
