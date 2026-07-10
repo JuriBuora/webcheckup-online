@@ -7,10 +7,26 @@
 !/.github/workflows/deploy-pages.yml
 !/DEPLOY_GITHUB_PAGES.md
 !/README.md
+!/CODEX_CONTEXT.md
+!/HANDOFF.md
 !/landing-page/
 !/landing-page/**
 !/scripts/
 !/scripts/**
+!/templates/
+!/templates/**
+!/checklists/
+!/checklists/**
+!/offer/
+!/offer/**
+!/proof/
+!/proof/**
+!/operations/
+!/operations/**
+!/handoff/
+!/handoff/**
+!/improvement-plan/
+!/improvement-plan/**
 
 # Ignore generated or temporary artifacts even inside allowed folders.
 *.bak
@@ -18,9 +34,12 @@
 **/__pycache__/
 **/.DS_Store
 
-# Keep operational runtime data out of git by default.
+# Keep operational runtime data (and anything with real client PII) out of git by default.
 /operations/logs/
 /operations/outbox/
 /operations/prospects/
+/operations/plans/
+/operations/delivery-log.csv
+/clients/
 /output/
 /tmp/
