@@ -37,14 +37,17 @@ If payment is not confirmed, do not start the paid audit.
 
 ### 4. Create the working package
 
-Run:
+Check the lead's language first (the `Fonte` field in the FormSubmit notification tells you: `landing-page` = Italian, `landing-page-en/pl/ro` = English/Polish/Romanian). Run:
 
 ```bash
 cd /Users/juribuora/website-trust-security-mini-audit
 python3 scripts/create_client_folder.py "Nome Attivita" \
   --website "https://www.esempio.it" \
-  --contact-email "email@example.com"
+  --contact-email "email@example.com" \
+  --language it
 ```
+
+Use `--language en|pl|ro` for non-Italian leads - it pulls the matching template set from `templates/international/<lang>/` and translates the webmaster message too. Remember to also pass `--lang <lang>` to `scripts/generate_report_pdf.py` later so the PDF cover, labels and footer come out in the same language.
 
 ### 5. Do the audit
 

@@ -64,7 +64,7 @@ Se vuoi gestire un cliente senza perderti, segui solo questo ordine:
    - `checklists/report-ready-qa-checklist.md`
    - `operations/payment-and-delivery-flow.md`
    - `operations/too-few-findings-policy.md`
-3. se il lead risponde, crea il pacchetto cliente:
+3. se il lead risponde, crea il pacchetto cliente (aggiungi `--language en|pl|ro` se il lead non è italiano - vedi sotto):
 
 ```bash
 cd /Users/juribuora/website-trust-security-mini-audit
@@ -155,7 +155,7 @@ python3 scripts/create_client_folder.py "Nome Cliente" \
 
 5. Raccogli screenshot e risultati non invasivi.
 6. Compila `clients/nome-cliente/report/report-completo.md`.
-7. Esporta il report in PDF con lo script del progetto:
+7. Esporta il report in PDF con lo script del progetto (aggiungi `--lang en|pl|ro` se il cliente non è italiano, cosi titolo, intestazioni e piè di pagina escono nella lingua giusta):
 
 ```bash
 /Users/juribuora/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 \
@@ -195,6 +195,32 @@ Nota operativa importante:
 Stato attuale:
 
 - la landing page usa già la stringa endpoint obfuscated di produzione per `FormSubmit`
+
+## Lingue disponibili (IT, EN, PL, RO)
+
+Il servizio ora si vende in 4 lingue: italiano (default), inglese, polacco e rumeno. L'idea è consegnare al cliente la lingua giusta in base a dove/come è arrivato, non tradurre a caso.
+
+**Sito:**
+
+- `landing-page/index.html` (italiano, alla radice)
+- `landing-page/en/index.html`, `landing-page/pl/index.html`, `landing-page/ro/index.html`
+- ogni pagina ha un piccolo cambio-lingua IT/EN/PL/RO in alto e i tag `hreflang` per i motori di ricerca
+- `landing-page/intake.js` è condiviso da tutte e 4 le pagine: legge la lingua da `<html lang="...">` e mostra i testi del form (stato invio, riepilogo) nella lingua giusta, ma i nomi interni dei campi restano identici in italiano così l'email di notifica arriva sempre con le stesse colonne
+- ogni form ha un campo nascosto `Fonte` diverso per lingua (`landing-page-en`, `landing-page-pl`, `landing-page-ro`) - **usa questo valore nell'email di notifica per sapere subito in che lingua rispondere e in che lingua creare il pacchetto cliente**
+
+**Materiali outreach (bozze, non ancora da inviare senza verifica):**
+
+- `templates/international/{en,pl,ro}/outreach-message.md` e `follow-up-message.md`
+- leggi `templates/international/README.md` prima di usarli: le regole sull'email commerciale a freddo non sono identiche in tutti i paesi (i paesi nordici in particolare sono più restrittivi), quindi sono bozze pronte per revisione, non email pronte per l'invio
+
+**Report cliente vero e proprio:**
+
+- `templates/international/{en,pl,ro}/audit-report-template.md`, `delivery-message-template.md`, `summary-cliente-phone-template.md`, `testimonial-request.md` - stessa struttura e stessi placeholder `{{...}}` dell'italiano, solo tradotti
+- `scripts/create_client_folder.py --language en|pl|ro` sceglie automaticamente il set di template giusto e traduce anche il messaggio pronto per il webmaster; `notes.md` e `handoff.md` restano sempre in italiano (sono per uso interno di Juri) ma registrano la lingua del cliente
+- `scripts/generate_report_pdf.py --lang en|pl|ro` traduce copertina, etichette e piè di pagina del PDF; il PDF incorpora il font Liberation Sans (in `scripts/fonts/`) cosi caratteri come ń ś ć ł polacchi o ă â î ș ț rumeni non escono come quadratini
+- `proof/international/{en,pl,ro}/public-sample-report.md` + `.pdf`: stesso esempio anonimizzato dell'italiano, tradotto, collegato dalla rispettiva pagina lingua (`landing-page/assets/public-sample-report-en.pdf` ecc.)
+
+**Prezzo:** resta `€49` in tutte le lingue per ora, non convertito in PLN/RON. `[DECISIONE-JURI]`: valutare se e quando localizzare il prezzo per i mercati non-euro.
 
 ## GitHub Pages
 
