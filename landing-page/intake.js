@@ -1,4 +1,41 @@
 (function () {
+  const I18N = {
+    it: {
+      sending: "Invio in corso...",
+      send: "Invia richiesta",
+      summaryTitle: "Riepilogo richiesta",
+      labels: ["Attività", "Sito", "Obiettivo", "Come vuole partire", "Tempistica"],
+      empty: "-",
+      defaultMode: "Da valutare",
+    },
+    en: {
+      sending: "Sending...",
+      send: "Send request",
+      summaryTitle: "Request summary",
+      labels: ["Business", "Website", "Goal", "How you'd like to start", "Timing"],
+      empty: "-",
+      defaultMode: "To be assessed",
+    },
+    pl: {
+      sending: "Wysyłanie...",
+      send: "Wyślij zgłoszenie",
+      summaryTitle: "Podsumowanie zgłoszenia",
+      labels: ["Firma", "Strona", "Cel", "Jak chcesz zacząć", "Termin"],
+      empty: "-",
+      defaultMode: "Do ustalenia",
+    },
+    ro: {
+      sending: "Se trimite...",
+      send: "Trimite cererea",
+      summaryTitle: "Rezumatul cererii",
+      labels: ["Afacere", "Site", "Obiectiv", "Cum vrei să începi", "Termen"],
+      empty: "-",
+      defaultMode: "De stabilit",
+    },
+  };
+  const pageLang = (document.documentElement.lang || "it").slice(0, 2);
+  const STR = I18N[pageLang] || I18N.it;
+
   const form = document.getElementById("intake-form");
   if (!form) return;
 
@@ -65,23 +102,24 @@
 
   function getChosenMode() {
     const checked = startingModeInputs.find((input) => input.checked);
-    return checked ? checked.value : "Da valutare";
+    return checked ? checked.value : STR.defaultMode;
   }
 
   function updateSummary() {
-    const summaryItems = [
-      `Attività: ${document.getElementById("name").value || "-"}`,
-      `Sito: ${document.getElementById("website").value || "-"}`,
-      `Obiettivo: ${document.getElementById("goal").value || "-"}`,
-      `Come vuole partire: ${getChosenMode()}`,
-      `Tempistica: ${document.getElementById("timing").value || "-"}`,
+    const values = [
+      document.getElementById("name").value,
+      document.getElementById("website").value,
+      document.getElementById("goal").value,
+      getChosenMode(),
+      document.getElementById("timing").value,
     ];
+    const summaryItems = STR.labels.map((label, index) => `${label}: ${values[index] || STR.empty}`);
 
     requestTypeField.value = getChosenMode();
     summaryField.value = summaryItems.join(" | ");
 
     summaryBox.innerHTML = `
-      <strong>Riepilogo richiesta</strong>
+      <strong>${STR.summaryTitle}</strong>
       <ul>
         ${summaryItems.map((item) => `<li>${item}</li>`).join("")}
       </ul>
@@ -118,7 +156,7 @@
     updateSummary();
     errorBox.hidden = true;
     submitButton.disabled = true;
-    submitButton.textContent = "Invio in corso...";
+    submitButton.textContent = STR.sending;
 
     const formData = new FormData(form);
 
@@ -147,7 +185,7 @@
       form.submit();
     } finally {
       submitButton.disabled = false;
-      submitButton.textContent = "Invia richiesta";
+      submitButton.textContent = STR.send;
     }
   });
 
