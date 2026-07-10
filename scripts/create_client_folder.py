@@ -11,9 +11,46 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = PROJECT_ROOT / "templates"
 CHECKLISTS_DIR = PROJECT_ROOT / "checklists"
+INTERNATIONAL_TEMPLATES_DIR = TEMPLATES_DIR / "international"
+SUPPORTED_LANGUAGES = ("it", "en", "pl", "ro")
 DEFAULT_PRICE = "€49"
 DEFAULT_DELIVERY_PROMISE = "entro 2 giorni lavorativi dopo conferma pagamento"
 DEFAULT_REVISION_PROMISE = "1 giro chiarimenti entro 7 giorni"
+
+# The client-facing "message for your web developer" text, one per supported
+# language. Everything else the operator sees (notes.md, handoff.md) stays in
+# Italian on purpose, since that's Juri's own working language - only text
+# that gets forwarded to the client or their web developer is localized.
+WEBMASTER_MESSAGE_BY_LANG = {
+    "it": {
+        "heading": "# Messaggio per il webmaster",
+        "intro": "Ciao, abbiamo fatto un check-up esterno e non invasivo del sito {website}.",
+        "priorities_label": "Le priorita principali da verificare sono:",
+        "closing": "Puoi controllare fattibilita, tempi, costi ed eventuali rischi di compatibilita?",
+        "offer": "Se serve, posso condividere il report completo del check-up di {client_name}.",
+    },
+    "en": {
+        "heading": "# Message for your web developer",
+        "intro": "Hi, we've had an external, non-invasive check-up of the website {website} done.",
+        "priorities_label": "The main priorities to check are:",
+        "closing": "Could you check feasibility, timing, cost and any compatibility risks?",
+        "offer": "If useful, I can share the full check-up report for {client_name}.",
+    },
+    "pl": {
+        "heading": "# Wiadomość dla webmastera",
+        "intro": "Cześć, zrobiliśmy zewnętrzny, nieinwazyjny check-up strony {website}.",
+        "priorities_label": "Główne priorytety do sprawdzenia to:",
+        "closing": "Możesz sprawdzić wykonalność, czas, koszt i ewentualne ryzyka związane z kompatybilnością?",
+        "offer": "Jeśli przyda się, mogę udostępnić pełny raport z check-upu dla {client_name}.",
+    },
+    "ro": {
+        "heading": "# Mesaj pentru webmaster",
+        "intro": "Buna, am facut o verificare externa si neinvaziva a site-ului {website}.",
+        "priorities_label": "Prioritatile principale de verificat sunt:",
+        "closing": "Poti verifica fezabilitatea, timpul, costul si eventualele riscuri de compatibilitate?",
+        "offer": "Daca e util, pot trimite raportul complet al verificarii pentru {client_name}.",
+    },
+}
 
 
 def slugify(value: str) -> str:
@@ -62,6 +99,7 @@ def build_notes_content(
     price: str,
     contact_name: str,
     lead_source: str,
+    language: str = "it",
 ) -> str:
     return "\n".join(
         [
@@ -74,6 +112,7 @@ def build_notes_content(
             f"- Contatto: {contact_email or '[da inserire]'}",
             f"- Referente: {contact_name or '[da inserire]'}",
             f"- Fonte lead: {lead_source or '[da inserire]'}",
+            f"- Lingua cliente: {language} (report, sintesi e messaggi vanno generati in questa lingua)",
             f"- Data apertura: {audit_date}",
             "- Obiettivo principale:",
             "",
@@ -112,33 +151,40 @@ def build_notes_content(
     )
 
 
-def build_webmaster_message(client_name: str, website: str) -> str:
+def build_webmaster_message(client_name: str, website: str, language: str = "it") -> str:
+    strings = WEBMASTER_MESSAGE_BY_LANG.get(language, WEBMASTER_MESSAGE_BY_LANG["it"])
+    placeholder_lines = {
+        "it": ["- [Priorita 1]", "- [Priorita 2]", "- [Priorita 3]"],
+        "en": ["- [Priority 1]", "- [Priority 2]", "- [Priority 3]"],
+        "pl": ["- [Priorytet 1]", "- [Priorytet 2]", "- [Priorytet 3]"],
+        "ro": ["- [Prioritatea 1]", "- [Prioritatea 2]", "- [Prioritatea 3]"],
+    }.get(language, ["- [Priorita 1]", "- [Priorita 2]", "- [Priorita 3]"])
+
     return "\n".join(
         [
-            "# Messaggio per il webmaster",
+            strings["heading"],
             "",
-            f"Ciao, abbiamo fatto un check-up esterno e non invasivo del sito {website}.",
+            strings["intro"].format(website=website),
             "",
-            "Le priorita principali da verificare sono:",
+            strings["priorities_label"],
             "",
-            "- [Priorita 1]",
-            "- [Priorita 2]",
-            "- [Priorita 3]",
+            *placeholder_lines,
             "",
-            "Puoi controllare fattibilita, tempi, costi ed eventuali rischi di compatibilita?",
+            strings["closing"],
             "",
-            f"Se serve, posso condividere il report completo del check-up di {client_name}.",
+            strings["offer"].format(client_name=client_name),
             "",
         ]
     )
 
 
-def build_handoff_content(client_name: str, website: str, audit_date: str) -> str:
+def build_handoff_content(client_name: str, website: str, audit_date: str, language: str = "it") -> str:
     return "\n".join(
         [
             f"# Handoff - {client_name}",
             "",
             f"- Sito: {website}",
+            f"- Lingua cliente: {language}",
             "- Stato: lead confermato / audit non iniziato",
             f"- Ultimo aggiornamento: {audit_date}",
             "- Obiettivo corrente: produrre il report PDF iniziale",
@@ -172,6 +218,23 @@ def build_handoff_content(client_name: str, website: str, audit_date: str) -> st
     )
 
 
+def resolve_templates_dir(language: str) -> Path:
+    """Return the template directory for the client's language.
+
+    Italian keeps using the historical `templates/` root. Other supported
+    languages read from `templates/international/<language>/`, which mirrors
+    the same file names so the rest of this script doesn't need to branch."""
+    if language == "it":
+        return TEMPLATES_DIR
+    lang_dir = INTERNATIONAL_TEMPLATES_DIR / language
+    if not lang_dir.is_dir():
+        raise SystemExit(
+            f"No templates found for language '{language}' at {lang_dir}. "
+            f"Supported languages: {', '.join(SUPPORTED_LANGUAGES)}."
+        )
+    return lang_dir
+
+
 def create_client_folder(
     client_name: str,
     base_dir: Path,
@@ -180,11 +243,13 @@ def create_client_folder(
     price: str,
     contact_name: str,
     lead_source: str,
+    language: str = "it",
 ) -> Path:
     client_dir = base_dir / slugify(client_name)
     subfolders = ["screenshots", "raw-results", "report"]
     audit_date = date.today().strftime("%d/%m/%Y")
     website = normalize_website(website)
+    templates_dir = resolve_templates_dir(language)
 
     client_dir.mkdir(parents=True, exist_ok=True)
     for folder in subfolders:
@@ -201,16 +266,19 @@ def create_client_folder(
             price,
             contact_name,
             lead_source,
+            language,
         ),
     )
 
-    audit_template = (TEMPLATES_DIR / "audit-report-template.md").read_text(encoding="utf-8")
+    audit_template = (templates_dir / "audit-report-template.md").read_text(encoding="utf-8")
     phone_summary_template = (
-        TEMPLATES_DIR / "summary-cliente-phone-template.md"
+        templates_dir / "summary-cliente-phone-template.md"
     ).read_text(encoding="utf-8")
-    delivery_template = (TEMPLATES_DIR / "delivery-message-template.md").read_text(
+    delivery_template = (templates_dir / "delivery-message-template.md").read_text(
         encoding="utf-8"
     )
+    # The delivery QA gate stays Italian regardless of client language: Juri
+    # is the one running this checklist himself before every send.
     report_ready_checklist = (
         CHECKLISTS_DIR / "report-ready-qa-checklist.md"
     ).read_text(encoding="utf-8")
@@ -230,13 +298,16 @@ def create_client_folder(
     )
     write_if_missing(
         report_dir / "messaggio-webmaster.md",
-        build_webmaster_message(client_name, website),
+        build_webmaster_message(client_name, website, language),
     )
     write_if_missing(
         report_dir / "checklist-prima-consegna.md",
         report_ready_checklist,
     )
-    write_if_missing(client_dir / "handoff.md", build_handoff_content(client_name, website, audit_date))
+    write_if_missing(
+        client_dir / "handoff.md",
+        build_handoff_content(client_name, website, audit_date, language),
+    )
 
     return client_dir
 
@@ -276,6 +347,14 @@ def main() -> None:
         default=DEFAULT_PRICE,
         help='Agreed price to write into `notes.md`. Default: "€49"',
     )
+    parser.add_argument(
+        "--language",
+        choices=SUPPORTED_LANGUAGES,
+        default="it",
+        help="Client-facing language for the report and messages: match this to where the "
+        "lead came from (e.g. Fonte: landing-page-en in the notification email -> --language en). "
+        "Default: it.",
+    )
 
     args = parser.parse_args()
     created_path = create_client_folder(
@@ -286,6 +365,7 @@ def main() -> None:
         args.price,
         args.contact_name,
         args.lead_source,
+        args.language,
     )
     print(f"Created client audit folder: {created_path}")
 
