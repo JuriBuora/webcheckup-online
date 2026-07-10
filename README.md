@@ -83,6 +83,7 @@ python3 scripts/create_client_folder.py "Nome Attivita" \
 11. chiudi con `handoff.md`
 
 Il comando sopra non crea solo cartelle: prepara anche i file base per report, consegna e handoff.
+In piu copia anche una checklist locale `report/checklist-prima-consegna.md` per il gate finale prima del PDF.
 
 ## Productization Defaults
 
@@ -99,6 +100,17 @@ I dettagli operativi sono in:
 - `offer/mini-audit-one-page.md`
 - `operations/payment-and-delivery-flow.md`
 - `operations/too-few-findings-policy.md`
+
+## Repo checks
+
+Per un controllo rapido della coerenza del repo e dello scaffold cliente:
+
+```bash
+cd /Users/juribuora/website-trust-security-mini-audit
+python3 scripts/validate_business_repo.py
+```
+
+Il check verifica i file chiave, alcuni testi di allineamento e fa uno smoke test di `scripts/create_client_folder.py` in una cartella temporanea.
 
 ## Local Agent
 

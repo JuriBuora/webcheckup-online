@@ -1,4 +1,4 @@
-# Publish only the website and deployment files from this mixed local project.
+# Keep the repo focused on source files, docs, and curated examples.
 *
 
 !/.gitignore
@@ -6,5 +6,21 @@
 !/.github/workflows/
 !/.github/workflows/deploy-pages.yml
 !/DEPLOY_GITHUB_PAGES.md
+!/README.md
 !/landing-page/
 !/landing-page/**
+!/scripts/
+!/scripts/**
+
+# Ignore generated or temporary artifacts even inside allowed folders.
+*.bak
+*.pyc
+**/__pycache__/
+**/.DS_Store
+
+# Keep operational runtime data out of git by default.
+/operations/logs/
+/operations/outbox/
+/operations/prospects/
+/output/
+/tmp/
