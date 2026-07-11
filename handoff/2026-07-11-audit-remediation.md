@@ -29,7 +29,16 @@ GitHub Pages cannot set response headers from this repository. CSP and referrer 
 
 ## Publishing state
 
-The local `main` branch was already 21 commits ahead of `origin/main` before this work. Pushing it is required to publish the language pages and these fixes to GitHub Pages.
+The local `main` branch was already 21 commits ahead of `origin/main` before this work. Both remediation commits were pushed and the GitHub Pages deployments completed successfully:
+
+- `9651206 harden landing page and audit workflow`
+- `bfe68e9 remove unsupported security text endpoint`
+
+The public IT/EN/PL/RO landing pages, privacy pages, `robots.txt`, and `sitemap.xml` all return `200` after deployment.
+
+## Repository housekeeping
+
+Normal Git maintenance was run. The stale `index.lock` and 120 abandoned `tmp_obj_*` temporary object files were removed only after confirming no Git process was active. `git fsck` now reports no corruption; three dangling, recoverable objects remain and were deliberately preserved.
 
 ## Naming recommendation
 
