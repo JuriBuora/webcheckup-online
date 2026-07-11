@@ -8,6 +8,8 @@
       content="Practical website check-up for small businesses: trust, inquiries, mobile, speed, basic SEO, links and contacts. PDF report with priorities for €49."
     >
     <meta name="theme-color" content="#123f34">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action https://formsubmit.co; connect-src 'self' https://formsubmit.co; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Website Check-up | More Trust, More Clarity, More Inquiries</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="../styles.css">
@@ -18,11 +20,11 @@
     <link rel="alternate" hreflang="x-default" href="https://www.webcheckup.online/">
   </head>
   <body>
-    <div style="display:flex;justify-content:flex-end;gap:.9rem;padding:.45rem 1.5rem;font-size:.8rem;background:#f4f6f5;border-bottom:1px solid #e3e7e5">
-      <a href="/" style="color:#6b7671;text-decoration:none">IT</a>
-      <a href="/en/" style="color:#123f34;text-decoration:none;font-weight:600">EN</a>
-      <a href="/pl/" style="color:#6b7671;text-decoration:none">PL</a>
-      <a href="/ro/" style="color:#6b7671;text-decoration:none">RO</a>
+    <div class="language-switcher">
+      <a href="/">IT</a>
+      <a href="/en/" class="is-active">EN</a>
+      <a href="/pl/">PL</a>
+      <a href="/ro/">RO</a>
     </div>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Website Check-up">
@@ -511,8 +513,12 @@
               </select>
 
               <label class="consent-line">
-                <input type="checkbox" id="consent" required>
+                <input type="checkbox" id="consent" name="Conferma sito pubblico" value="Sì" required>
                 <span>I confirm the website listed is public and that I can request an external, non-invasive review.</span>
+              </label>
+              <label class="consent-line">
+                <input type="checkbox" id="privacy-ack" name="Conferma informativa privacy" value="Sì" required>
+                <span>I have read the <a href="privacy.html">privacy notice</a>.</span>
               </label>
 
               <div class="intake-summary" id="intake-summary"></div>
@@ -531,6 +537,7 @@
     <footer class="site-footer">
       <p>Website Check-up</p>
       <p>External, practical and non-invasive analysis for small businesses.</p>
+      <p><a href="privacy.html">Privacy</a></p>
     </footer>
 
     <div class="mobile-cta">

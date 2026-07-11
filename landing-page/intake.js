@@ -59,10 +59,19 @@
   const fieldGroups = [
     ["name", "website", "sector", "webmaster"],
     ["goal", "priority"],
-    ["email", "contact-name", "timing", "consent"],
+    ["email", "contact-name", "timing", "consent", "privacy-ack"],
   ];
 
-  nextField.value = `${window.location.origin}${window.location.pathname}?sent=1#contatto`;
+  const submissionNonceKey = "webcheckup-submission-nonce";
+  const query = new URLSearchParams(window.location.search);
+  const returnedNonce = query.get("nonce");
+  const storedSubmissionNonce = sessionStorage.getItem(submissionNonceKey);
+  const hasFallbackSuccess = query.get("sent") === "1" && returnedNonce && returnedNonce === storedSubmissionNonce;
+  const submissionNonce = storedSubmissionNonce || window.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`;
+  if (!hasFallbackSuccess) {
+    sessionStorage.setItem(submissionNonceKey, submissionNonce);
+  }
+  nextField.value = `${window.location.origin}${window.location.pathname}?sent=1&nonce=${encodeURIComponent(submissionNonce)}#contatto`;
 
   function updateStep() {
     steps.forEach((step, index) => {
@@ -118,12 +127,15 @@
     requestTypeField.value = getChosenMode();
     summaryField.value = summaryItems.join(" | ");
 
-    summaryBox.innerHTML = `
-      <strong>${STR.summaryTitle}</strong>
-      <ul>
-        ${summaryItems.map((item) => `<li>${item}</li>`).join("")}
-      </ul>
-    `;
+    const title = document.createElement("strong");
+    title.textContent = STR.summaryTitle;
+    const list = document.createElement("ul");
+    summaryItems.forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      list.appendChild(listItem);
+    });
+    summaryBox.replaceChildren(title, list);
   }
 
   function showSuccess() {
@@ -176,7 +188,7 @@
       const result = await response.json();
       if (result.success === "true" || result.message || response.ok) {
         showSuccess();
-        window.history.replaceState({}, "", `${window.location.pathname}?sent=1#contatto`);
+        window.history.replaceState({}, "", `${window.location.pathname}#contatto`);
       } else {
         throw new Error("Unexpected response");
       }
@@ -189,7 +201,8 @@
     }
   });
 
-  if (window.location.search.includes("sent=1")) {
+  if (hasFallbackSuccess) {
+    sessionStorage.removeItem(submissionNonceKey);
     showSuccess();
   } else {
     updateStep();

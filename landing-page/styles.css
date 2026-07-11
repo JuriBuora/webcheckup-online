@@ -17,6 +17,26 @@
   font-family: "Avenir Next", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.language-switcher {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.9rem;
+  padding: 0.45rem 1.5rem;
+  font-size: 0.8rem;
+  background: #f4f6f5;
+  border-bottom: 1px solid #e3e7e5;
+}
+
+.language-switcher a {
+  color: #6b7671;
+  text-decoration: none;
+}
+
+.language-switcher a.is-active {
+  color: #123f34;
+  font-weight: 600;
+}
+
 * {
   box-sizing: border-box;
 }

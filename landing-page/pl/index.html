@@ -8,6 +8,8 @@
       content="Praktyczny check-up strony dla małych firm: zaufanie, zapytania, mobile, szybkość, podstawowe SEO, linki i kontakt. Raport PDF z priorytetami za 49 €."
     >
     <meta name="theme-color" content="#123f34">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action https://formsubmit.co; connect-src 'self' https://formsubmit.co; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Check-up Strony Www | Więcej Zaufania, Więcej Jasności, Więcej Zapytań</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="../styles.css">
@@ -18,11 +20,11 @@
     <link rel="alternate" hreflang="x-default" href="https://www.webcheckup.online/">
   </head>
   <body>
-    <div style="display:flex;justify-content:flex-end;gap:.9rem;padding:.45rem 1.5rem;font-size:.8rem;background:#f4f6f5;border-bottom:1px solid #e3e7e5">
-      <a href="/" style="color:#6b7671;text-decoration:none">IT</a>
-      <a href="/en/" style="color:#6b7671;text-decoration:none">EN</a>
-      <a href="/pl/" style="color:#123f34;text-decoration:none;font-weight:600">PL</a>
-      <a href="/ro/" style="color:#6b7671;text-decoration:none">RO</a>
+    <div class="language-switcher">
+      <a href="/">IT</a>
+      <a href="/en/">EN</a>
+      <a href="/pl/" class="is-active">PL</a>
+      <a href="/ro/">RO</a>
     </div>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Check-up Strony Www">
@@ -511,8 +513,12 @@
               </select>
 
               <label class="consent-line">
-                <input type="checkbox" id="consent" required>
+                <input type="checkbox" id="consent" name="Conferma sito pubblico" value="Sì" required>
                 <span>Potwierdzam, że podana strona jest publiczna i mogę zgłosić zewnętrzną, nieinwazyjną weryfikację.</span>
+              </label>
+              <label class="consent-line">
+                <input type="checkbox" id="privacy-ack" name="Conferma informativa privacy" value="Sì" required>
+                <span>Zapoznałem(-am) się z <a href="privacy.html">informacją o prywatności</a>.</span>
               </label>
 
               <div class="intake-summary" id="intake-summary"></div>
@@ -531,6 +537,7 @@
     <footer class="site-footer">
       <p>Check-up Strony Www</p>
       <p>Zewnętrzna, praktyczna i nieinwazyjna analiza dla małych firm.</p>
+      <p><a href="privacy.html">Prywatność</a></p>
     </footer>
 
     <div class="mobile-cta">

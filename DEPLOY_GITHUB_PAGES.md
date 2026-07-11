@@ -74,7 +74,13 @@ The intake funnel already points at the production FormSubmit token:
 Smoke-test these on the public URL:
 
 1. homepage loads
-2. sample PDF opens
-3. form moves through all 3 steps
-4. one real submission succeeds
-5. HTTPS is active on `https://www.webcheckup.online`
+2. all language routes (`/en/`, `/pl/`, `/ro/`) and their privacy pages load
+3. sample PDF opens
+4. `robots.txt`, `sitemap.xml`, and `.well-known/security.txt` load
+5. form moves through all 3 steps, requires both acknowledgements, and renders typed HTML as text
+6. one real submission succeeds only when the mailbox owner expects it
+7. HTTPS is active on `https://www.webcheckup.online` and HTTP redirects there
+
+## Header limitation on GitHub Pages
+
+The deployed pages include a restrictive CSP and referrer-policy meta tag. GitHub Pages itself cannot set response headers such as HSTS, `X-Content-Type-Options`, `Permissions-Policy`, or clickjacking protection. Put the site behind a CDN/proxy that supports header rules, or move it to a host that does, before treating those protections as deployed.

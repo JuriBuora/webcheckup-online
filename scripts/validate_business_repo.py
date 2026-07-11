@@ -23,6 +23,17 @@ CORE_FILES = [
     PROJECT_ROOT / "checklists" / "report-ready-qa-checklist.md",
     PROJECT_ROOT / "scripts" / "create_client_folder.py",
     PROJECT_ROOT / "scripts" / "generate_report_pdf.py",
+    PROJECT_ROOT / "landing-page" / "robots.txt",
+    PROJECT_ROOT / "landing-page" / "sitemap.xml",
+    PROJECT_ROOT / "landing-page" / ".well-known" / "security.txt",
+    PROJECT_ROOT / "SECURITY.md",
+]
+
+LANDING_PAGES = [
+    PROJECT_ROOT / "landing-page" / "index.html",
+    PROJECT_ROOT / "landing-page" / "en" / "index.html",
+    PROJECT_ROOT / "landing-page" / "pl" / "index.html",
+    PROJECT_ROOT / "landing-page" / "ro" / "index.html",
 ]
 
 CONTENT_CHECKS = {
@@ -66,6 +77,38 @@ def validate_content_checks() -> None:
             if snippet not in text:
                 fail(f"{path.relative_to(PROJECT_ROOT)} is missing expected text: {snippet}")
     print("OK repo content checks")
+
+
+def validate_landing_page_hardening() -> None:
+    for page in LANDING_PAGES:
+        text = page.read_text(encoding="utf-8")
+        for snippet in [
+            'http-equiv="Content-Security-Policy"',
+            'name="referrer" content="strict-origin-when-cross-origin"',
+            'name="Conferma sito pubblico"',
+            'name="Conferma informativa privacy"',
+            'id="privacy-ack"',
+            'href="privacy.html"',
+        ]:
+            if snippet not in text:
+                fail(f"{page.relative_to(PROJECT_ROOT)} is missing hardening: {snippet}")
+
+        privacy_page = page.parent / "privacy.html"
+        if not privacy_page.exists():
+            fail(f"{page.relative_to(PROJECT_ROOT)} is missing matching privacy page")
+
+    intake_script = (PROJECT_ROOT / "landing-page" / "intake.js").read_text(encoding="utf-8")
+    for snippet in ["summaryBox.replaceChildren", "new URLSearchParams", "submissionNonceKey"]:
+        if snippet not in intake_script:
+            fail(f"landing-page/intake.js is missing hardening: {snippet}")
+    if "summaryBox.innerHTML" in intake_script:
+        fail("landing-page/intake.js must not render request data with innerHTML")
+
+    sitemap = (PROJECT_ROOT / "landing-page" / "sitemap.xml").read_text(encoding="utf-8")
+    for url in ["https://www.webcheckup.online/", "/en/", "/pl/", "/ro/"]:
+        if url not in sitemap:
+            fail(f"landing-page/sitemap.xml is missing URL: {url}")
+    print("OK landing-page hardening checks")
 
 
 def validate_scaffold() -> None:
@@ -154,6 +197,7 @@ def main() -> None:
     if not args.scaffold_only:
         validate_core_files()
         validate_content_checks()
+        validate_landing_page_hardening()
 
     if not args.repo_only:
         validate_scaffold()
