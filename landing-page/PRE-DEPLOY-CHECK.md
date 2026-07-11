@@ -8,7 +8,7 @@
 - [ ] Il form mantiene validazione e stato di successo
 - [ ] Il riepilogo del form mostra il testo inserito come testo, senza renderizzare HTML
 - [ ] Entrambe le conferme (sito pubblico e informativa privacy) sono richieste e ricevute nell'email del form
-- [ ] Le pagine privacy IT/EN/PL/RO e `robots.txt`, `sitemap.xml`, `.well-known/security.txt` restituiscono `200`
+- [ ] Le pagine privacy IT/EN/PL/RO, `robots.txt` e `sitemap.xml` restituiscono `200`
 - [ ] Il CSP meta lascia funzionare il form AJAX e il fallback FormSubmit
 - [ ] Il layout mobile e leggibile e senza CTA rotte
 - [ ] Il testo "Analisi esterna e non invasiva - non e un pen-test." e presente

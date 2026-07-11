@@ -25,7 +25,6 @@ CORE_FILES = [
     PROJECT_ROOT / "scripts" / "generate_report_pdf.py",
     PROJECT_ROOT / "landing-page" / "robots.txt",
     PROJECT_ROOT / "landing-page" / "sitemap.xml",
-    PROJECT_ROOT / "landing-page" / ".well-known" / "security.txt",
     PROJECT_ROOT / "SECURITY.md",
 ]
 

@@ -11,7 +11,7 @@ Remediated the actionable security, trust, SEO, and workflow findings from the 2
 - Added submitted values for the public-site acknowledgement and a new required privacy-notice acknowledgement in all four languages.
 - Added translated privacy notices at `/privacy.html`, `/en/privacy.html`, `/pl/privacy.html`, and `/ro/privacy.html`.
 - Added a restrictive CSP meta policy and `strict-origin-when-cross-origin` referrer policy; removed inline language-switch styles so the CSP has no blocked-style violations.
-- Added `robots.txt`, `sitemap.xml`, and `.well-known/security.txt`, plus the repository `SECURITY.md` reporting policy.
+- Added `robots.txt`, `sitemap.xml`, and the repository `SECURITY.md` reporting policy.
 - Pinned GitHub Pages Actions to full commit SHAs and updated them to current stable major releases.
 - Expanded the repo validator and pre-deploy checklist so the hardening cannot silently regress.
 

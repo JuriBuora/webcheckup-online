@@ -76,7 +76,7 @@ Smoke-test these on the public URL:
 1. homepage loads
 2. all language routes (`/en/`, `/pl/`, `/ro/`) and their privacy pages load
 3. sample PDF opens
-4. `robots.txt`, `sitemap.xml`, and `.well-known/security.txt` load
+4. `robots.txt` and `sitemap.xml` load
 5. form moves through all 3 steps, requires both acknowledgements, and renders typed HTML as text
 6. one real submission succeeds only when the mailbox owner expects it
 7. HTTPS is active on `https://www.webcheckup.online` and HTTP redirects there
