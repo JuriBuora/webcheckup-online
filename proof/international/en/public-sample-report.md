@@ -1,6 +1,6 @@
 <!-- DA RIVEDERE DA JURI PRIMA DELLA PUBBLICAZIONE -->
 
-# Website Check-up - Public Sample Report
+# WebCheckup - Public Sample Report
 
 ## Security, Trust and Visibility
 

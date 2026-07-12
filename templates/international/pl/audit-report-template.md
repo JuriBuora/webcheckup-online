@@ -1,4 +1,4 @@
-# Check-up Strony Www
+# WebCheckup
 
 ## Bezpieczeństwo, Zaufanie i Widoczność
 

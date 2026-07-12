@@ -73,11 +73,11 @@ UNFILLED_PLACEHOLDER_RE = re.compile(r"{{[^{}]+}}")
 
 LANG_STRINGS = {
     "it": {
-        "cover_title": "Check-up Sito Web",
+        "cover_title": "WebCheckup",
         "cover_subtitle": "Sicurezza, Fiducia e Visibilità",
         "page_label": "Pagina",
         "missing_image": "Screenshot non trovato",
-        "default_pdf_title": "Check-up Sito Web - Report completo",
+        "default_pdf_title": "WebCheckup - Report completo",
         "default_subject": "Analisi esterna e non invasiva del sito web",
         "front_matter_labels": {
             "client": "Cliente",
@@ -88,11 +88,11 @@ LANG_STRINGS = {
         "default_type": "Analisi esterna e non invasiva",
     },
     "en": {
-        "cover_title": "Website Check-up",
+        "cover_title": "WebCheckup",
         "cover_subtitle": "Security, Trust and Visibility",
         "page_label": "Page",
         "missing_image": "Screenshot not found",
-        "default_pdf_title": "Website Check-up - Full report",
+        "default_pdf_title": "WebCheckup - Full report",
         "default_subject": "External, non-invasive website analysis",
         "front_matter_labels": {
             "client": "Client",
@@ -103,11 +103,11 @@ LANG_STRINGS = {
         "default_type": "External, non-invasive analysis",
     },
     "pl": {
-        "cover_title": "Check-up Strony Www",
+        "cover_title": "WebCheckup",
         "cover_subtitle": "Bezpieczeństwo, Zaufanie i Widoczność",
         "page_label": "Strona",
         "missing_image": "Nie znaleziono zrzutu ekranu",
-        "default_pdf_title": "Check-up Strony Www - Raport pełny",
+        "default_pdf_title": "WebCheckup - Raport pełny",
         "default_subject": "Zewnętrzna, nieinwazyjna analiza strony internetowej",
         "front_matter_labels": {
             "client": "Klient",
@@ -118,11 +118,11 @@ LANG_STRINGS = {
         "default_type": "Analiza zewnętrzna i nieinwazyjna",
     },
     "ro": {
-        "cover_title": "Verificare Site Web",
+        "cover_title": "WebCheckup",
         "cover_subtitle": "Securitate, Incredere si Vizibilitate",
         "page_label": "Pagina",
         "missing_image": "Captura de ecran negasita",
-        "default_pdf_title": "Verificare Site Web - Raport complet",
+        "default_pdf_title": "WebCheckup - Raport complet",
         "default_subject": "Analiza externa si neinvaziva a site-ului web",
         "front_matter_labels": {
             "client": "Client",
@@ -496,7 +496,7 @@ def footer_factory(title: str, author: str, subject: str, page_label: str = "Pag
         canvas.setTitle(title)
         canvas.setAuthor(author)
         canvas.setSubject(subject)
-        canvas.setCreator("Website Trust & Security Mini-Audit Service")
+        canvas.setCreator("WebCheckup")
         canvas.setProducer("ReportLab")
         canvas.setFont(BODY_FONT, 8)
         canvas.setFillColor(colors.HexColor("#6d7975"))

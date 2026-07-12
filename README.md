@@ -1,10 +1,10 @@
-# Website Trust & Security Mini-Audit Service
+# WebCheckup
 
 Progetto per vendere un servizio semplice e pratico di check-up sito web per piccole attività italiane.
 
-Il posizionamento principale è:
+Il brand è **WebCheckup**. Il posizionamento principale è:
 
-> Check-up Sito Web: Sicurezza, Fiducia e Visibilità
+> WebCheckup — Sicurezza, Fiducia e Visibilità
 
 L'obiettivo è validare velocemente un'offerta da €49 senza costruire un SaaS o un processo troppo complesso.
 
@@ -67,7 +67,7 @@ Se vuoi gestire un cliente senza perderti, segui solo questo ordine:
 3. se il lead risponde, crea il pacchetto cliente (aggiungi `--language en|pl|ro` se il lead non è italiano - vedi sotto):
 
 ```bash
-cd /Users/juribuora/website-trust-security-mini-audit
+cd /Users/juribuora/webcheckup
 python3 scripts/create_client_folder.py "Nome Attivita" \
   --website "https://www.esempio.it" \
   --contact-email "email@example.com"
@@ -106,7 +106,7 @@ I dettagli operativi sono in:
 Per un controllo rapido della coerenza del repo e dello scaffold cliente:
 
 ```bash
-cd /Users/juribuora/website-trust-security-mini-audit
+cd /Users/juribuora/webcheckup
 python3 scripts/validate_business_repo.py
 ```
 

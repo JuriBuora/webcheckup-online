@@ -1,6 +1,6 @@
 <!-- DA RIVEDERE DA JURI PRIMA DELLA PUBBLICAZIONE -->
 
-# Verificare Site Web - Raport Public de Exemplu
+# WebCheckup - Raport Public de Exemplu
 
 ## Securitate, Incredere si Vizibilitate
 

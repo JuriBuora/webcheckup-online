@@ -40,7 +40,7 @@ If payment is not confirmed, do not start the paid audit.
 Check the lead's language first (the `Fonte` field in the FormSubmit notification tells you: `landing-page` = Italian, `landing-page-en/pl/ro` = English/Polish/Romanian). Run:
 
 ```bash
-cd /Users/juribuora/website-trust-security-mini-audit
+cd /Users/juribuora/webcheckup
 python3 scripts/create_client_folder.py "Nome Attivita" \
   --website "https://www.esempio.it" \
   --contact-email "email@example.com" \

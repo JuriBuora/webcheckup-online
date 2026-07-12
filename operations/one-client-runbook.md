@@ -45,7 +45,7 @@ Minimum info to collect:
 Run:
 
 ```bash
-cd /Users/juribuora/website-trust-security-mini-audit
+cd /Users/juribuora/webcheckup
 python3 scripts/create_client_folder.py "Nome Attivita" \
   --website "https://www.esempio.it" \
   --contact-email "email@example.com"

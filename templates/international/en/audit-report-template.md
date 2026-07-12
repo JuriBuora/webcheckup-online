@@ -1,4 +1,4 @@
-# Website Check-up
+# WebCheckup
 
 ## Security, Trust and Visibility
 

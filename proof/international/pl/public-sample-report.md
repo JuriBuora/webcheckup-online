@@ -1,6 +1,6 @@
 <!-- DA RIVEDERE DA JURI PRIMA DELLA PUBBLICAZIONE -->
 
-# Check-up Strony Www - Przykładowy Raport Publiczny
+# WebCheckup - Przykładowy Raport Publiczny
 
 ## Bezpieczeństwo, Zaufanie i Widoczność
 

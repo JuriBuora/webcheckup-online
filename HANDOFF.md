@@ -1,4 +1,4 @@
-# Handoff - Website Trust & Security Mini-Audit Service
+# Handoff - WebCheckup
 
 ## Purpose
 
@@ -6,7 +6,7 @@ This project is a lightweight monetization project for Juri Buora.
 
 The service is a low-cost, non-invasive website check-up for small Italian businesses. It is positioned as:
 
-> Check-up Sito Web: Sicurezza, Fiducia e Visibilità
+> WebCheckup — Sicurezza, Fiducia e Visibilità
 
 The goal is to sell practical website audits for **€49** and deliver a simple PDF report with clear findings, screenshots, priorities, business impact, and practical recommendations.
 
@@ -48,11 +48,13 @@ Use this disclaimer in reports:
 
 ## Project Location
 
-Main project folder:
+Canonical project folder:
 
 ```text
-/Users/juribuora/website-trust-security-mini-audit
+/Users/juribuora/webcheckup
 ```
+
+For compatibility, `/Users/juribuora/website-trust-security-mini-audit` is a symlink to this canonical folder. Historical notes below may use the legacy path.
 
 Important files:
 

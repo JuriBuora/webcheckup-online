@@ -1,6 +1,6 @@
 <!-- DA RIVEDERE DA JURI PRIMA DELLA PUBBLICAZIONE -->
 
-# Check-up Sito Web - Esempio Report Pubblico
+# WebCheckup - Esempio Report Pubblico
 
 ## Sicurezza, Fiducia e Visibilità
 

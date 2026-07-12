@@ -2,7 +2,7 @@
 
 ## Project Name
 
-Website Trust & Security Mini-Audit Service for Italian Small Businesses
+WebCheckup service for Italian small businesses
 
 ## Owner
 
@@ -20,7 +20,7 @@ This is not a penetration test. It must not include intrusive scanning, exploita
 
 Primary:
 
-> Check-up Sito Web: Sicurezza, Fiducia e Visibilità
+> WebCheckup — Sicurezza, Fiducia e Visibilità
 
 Alternative:
 
