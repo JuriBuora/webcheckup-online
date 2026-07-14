@@ -39,12 +39,15 @@ CONTENT_CHECKS = {
     PROJECT_ROOT / "offer" / "mini-audit-one-page.md": [
         "€49",
         "2 giorni lavorativi dopo conferma pagamento",
-        "[DECISIONE-JURI]",
+        "Check-up del Sito Web",
+        "bonifico bancario",
+        "ricevuta semplice",
     ],
     PROJECT_ROOT / "operations" / "payment-and-delivery-flow.md": [
         "€49",
         "2 giorni lavorativi",
-        "[DECISIONE-JURI]",
+        "bonifico bancario",
+        "ricevuta semplice",
     ],
     PROJECT_ROOT / "landing-page" / "index.html": [
         "Richiedi il check-up",

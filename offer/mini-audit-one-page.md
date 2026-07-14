@@ -1,4 +1,4 @@
-# Mini-Audit €49 - Scheda Offerta
+# Check-up del Sito Web €49 - Scheda Offerta
 
 ## Cosa include
 
@@ -20,7 +20,7 @@
 
 ## Prezzo
 
-- Mini-Audit: **€49**
+- Check-up del Sito Web: **€49**
 
 ## Tempi di consegna
 
@@ -31,26 +31,26 @@
 
 - Revisione consigliata di default: **1 revisione minore gratuita entro 7 giorni**
 - Revisione minore = chiarimento, riformulazione di un punto, piccola correzione di testo
-- Non include un nuovo audit dopo modifiche al sito o un'estensione di scope
+- Non include un nuovo check-up dopo modifiche al sito o un'estensione di scope
 
 ## Metodo di pagamento
 
-- **[DECISIONE-JURI]** Default consigliato: bonifico oppure link PayPal
-- Il pagamento va confermato prima di iniziare il report completo
-- Il metodo definitivo va confermato da Juri prima di usarlo nei messaggi cliente
+- Pagamento tramite **bonifico bancario**
+- L'IBAN viene comunicato nel messaggio di conferma, non pubblicato qui
+- Il pagamento va confermato (bonifico ricevuto o contabile inviata) prima di iniziare il report completo
 
-## Ricevuta/fattura
+## Ricevuta
 
-- **[DECISIONE-JURI]** Default consigliato: ricevuta semplice coerente con il metodo di incasso realmente usato
-- Non promettere fattura, IVA o diciture fiscali finché Juri non conferma il processo reale
+- Al cliente viene rilasciata una **ricevuta semplice**, coerente con il pagamento tramite bonifico
+- Non si promette fattura con IVA o diciture fiscali che non corrispondono al processo reale
 
 ## Casi limite
 
 - **Sito offline o non raggiungibile:** il lavoro si mette in pausa o si ricalendariozza
-- **Nessun accesso necessario ma sito incompleto:** si segnala il limite e si valuta se l'audit ha senso
+- **Nessun accesso necessario ma sito incompleto:** si segnala il limite e si valuta se il check-up ha senso
 - **Troppo poche criticita reali:** non si forza il report a pagamento; si applica `operations/too-few-findings-policy.md`
 - **Scope che cambia dopo l'accettazione:** si chiarisce prima di continuare
 
 ## Formula breve da usare
 
-"Ti mando un check-up pratico e non invasivo del sito: ricevi un PDF chiaro con priorita, impatto pratico e un messaggio pronto da inoltrare al webmaster. Il prezzo e di €49 e la consegna standard e in 2 giorni lavorativi dopo conferma pagamento."
+"Ti mando un check-up pratico e non invasivo del sito: ricevi un PDF chiaro con priorita, impatto pratico e un messaggio pronto da inoltrare al webmaster. Il prezzo e di €49 e la consegna standard e in 2 giorni lavorativi dopo conferma pagamento. Il pagamento e con bonifico bancario."

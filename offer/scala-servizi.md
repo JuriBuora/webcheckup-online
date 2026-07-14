@@ -1,8 +1,8 @@
 # Scala Servizi
 
-Regola base: il Mini-Audit deve stare in piedi da solo. Tier 2 si propone solo dopo aver consegnato valore. Tier 3 non si spinge mai di default.
+Regola base: il Check-up del Sito Web deve stare in piedi da solo. Tier 2 si propone solo dopo aver consegnato valore. Tier 3 non si spinge mai di default.
 
-## Tier 1 - Mini-Audit €49
+## Tier 1 - Check-up del Sito Web €49
 
 - Analisi esterna e non invasiva del sito
 - Report PDF con priorita, impatto pratico e chi sistema
@@ -12,12 +12,12 @@ Regola base: il Mini-Audit deve stare in piedi da solo. Tier 2 si propone solo d
 Quando proporlo:
 - come primo passo per capire se il sito perde fiducia, chiarezza o richieste
 
-## Tier 2 - Audit + Lista Interventi Prioritari
+## Tier 2 - Check-up + Lista Interventi Prioritari
 
-- Mini-Audit completo
+- Check-up del Sito Web completo
 - Lista interventi piu operativa, pronta per il webmaster
 - Breve call di chiarimento dopo la consegna
-- **[DECISIONE-JURI]** Fascia consigliata: **€99-149**
+- Prezzo: **€99**
 
 Quando proporlo:
 - solo dopo aver consegnato il valore del Tier 1
@@ -26,7 +26,7 @@ Quando proporlo:
 ## Tier 3 - Sistemazione guidata / retainer
 
 - Da valutare solo quando lo scope e autorizzato e davvero giustificato
-- Non e un upsell automatico del Mini-Audit
+- Non e un upsell automatico del Check-up del Sito Web
 - Utile solo se emerge un bisogno concreto di coordinamento con webmaster, follow-up o piano di interventi
 
 Quando e appropriato:

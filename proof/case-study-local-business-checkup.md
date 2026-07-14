@@ -45,7 +45,7 @@ I miglioramenti emersi erano soprattutto di qualità e conversione:
 
 Non serve trovare "buchi gravi" per dare valore.
 
-Il valore del mini-audit è:
+Il valore del check-up del sito è:
 
 - trasformare osservazioni sparse in priorità chiare
 - evitare linguaggio tecnico inutile

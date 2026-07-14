@@ -119,7 +119,7 @@ def build_notes_content(
             "## Commerciale",
             "",
             f"- Prezzo concordato: {price}",
-            "- Pagamento: da confermare",
+            "- Pagamento: bonifico bancario (IBAN nel messaggio di conferma)",
             "- Data pagamento:",
             f"- Consegna standard promessa: {DEFAULT_DELIVERY_PROMISE}",
             "- Data consegna promessa:",

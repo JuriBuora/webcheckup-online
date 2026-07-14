@@ -1,4 +1,4 @@
-# FAQ Obiezioni - Mini-Audit €49
+# FAQ Obiezioni - Check-up del Sito Web €49
 
 ## "49 euro sono comunque una spesa"
 
@@ -30,7 +30,7 @@ Ricevi un report PDF con problemi prioritari, impatto pratico, cosa fare e chi d
 
 ## "E se non trovate niente di davvero utile?"
 
-Non forzo il report. Se dal controllo emerge troppo poco materiale concreto, ti lascio una mini-analisi gratuita con i punti piu utili e non spingo il lavoro a pagamento.
+Non forzo il report. Se dal controllo emerge troppo poco materiale concreto, ti lascio una breve analisi gratuita con i punti piu utili e non spingo il lavoro a pagamento.
 
 ## "Chi sistema poi i problemi?"
 
@@ -38,4 +38,4 @@ Dipende dal punto: alcuni li puo chiarire il titolare, altri il webmaster o il p
 
 ## "Poi mi proponi per forza altri servizi?"
 
-No. Il Mini-Audit resta autonomo. Eventuali passi successivi hanno senso solo dopo aver consegnato valore e solo se emerge un bisogno reale.
+No. Il Check-up del Sito Web resta autonomo. Eventuali passi successivi hanno senso solo dopo aver consegnato valore e solo se emerge un bisogno reale.

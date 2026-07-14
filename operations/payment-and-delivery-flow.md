@@ -101,17 +101,17 @@ Only ask after the client has had time to read the report.
 - no weak report goes out just to avoid an awkward conversation
 - no advanced-security upsell unless the scope clearly justifies it
 
-## Pagamento e ricevuta [DECISIONE-JURI]
+## Pagamento e ricevuta
 
-Default consigliato da confermare:
+Metodo confermato:
 
-- metodo semplice: bonifico oppure link PayPal
-- il pagamento deve risultare confermato prima di iniziare il Mini-Audit a pagamento
+- pagamento tramite **bonifico bancario** (nessun link PayPal)
+- l'IBAN viene comunicato nel messaggio di conferma al cliente, non conservato in questo repo
+- il pagamento deve risultare confermato prima di iniziare il Check-up del Sito Web a pagamento
 - la consegna resta entro 2 giorni lavorativi dopo conferma pagamento
-- usare una ricevuta semplice coerente con il metodo reale di incasso
+- al cliente viene rilasciata una ricevuta semplice, coerente con l'incasso via bonifico
 
-Non trattare questa sezione come decisione finale finché Juri non conferma:
+Nota fiscale:
 
-- metodo definitivo
-- eventuale fattura o ricevuta fiscale
-- testo esatto da usare nei messaggi cliente
+- non promettere fattura con IVA o diciture fiscali che non corrispondono al processo reale
+- se in futuro serve emettere fattura, aggiornare prima questa sezione e i messaggi cliente
