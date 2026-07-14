@@ -73,6 +73,13 @@ register_fonts()
 PAGEBREAK_MARKER = "<!-- pagebreak -->"
 UNFILLED_PLACEHOLDER_RE = re.compile(r"{{[^{}]+}}")
 
+# `<!-- optional-screenshot: file.png | Optional caption -->`
+# Embeds the screenshot when the client captured it and renders nothing
+# otherwise, so a template can carry an auto-filling screenshot slot.
+OPTIONAL_SCREENSHOT_RE = re.compile(
+    r"<!--\s*optional-screenshot:\s*([^|]+?)\s*(?:\|\s*(.*?))?\s*-->\s*$"
+)
+
 # Usable content width inside the page margins (leftMargin == rightMargin == 1.7 cm).
 CONTENT_WIDTH = A4[0] - 3.4 * cm
 
@@ -525,17 +532,33 @@ def add_image(
     styles: dict[str, ParagraphStyle],
     lang_strings: dict[str, str],
 ) -> None:
-    image_path = (markdown_path.parent / image_ref).resolve()
-    if not image_path.exists():
+    image_path = resolve_screenshot(markdown_path, image_ref)
+    if image_path is None:
         missing_label = lang_strings["missing_image"]
         story.append(Paragraph(f"[{missing_label}: {escape_inline(image_ref)}]", styles["small"]))
         return
+    story.extend(framed_image_flowables(image_path, alt, styles))
 
+
+def resolve_screenshot(markdown_path: Path, ref: str) -> Path | None:
+    """Locate a referenced image, tolerant of where the report Markdown sits
+    relative to the client's screenshots/ folder. Returns None if not found."""
+    candidates = [
+        markdown_path.parent / ref,
+        markdown_path.parent / "screenshots" / ref,
+        markdown_path.parent.parent / "screenshots" / ref,
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate.resolve()
+    return None
+
+
+def framed_image_flowables(image_path: Path, caption: str, styles: dict[str, ParagraphStyle]) -> list:
+    """A screenshot with a thin border, centered, with an optional caption —
+    the same framed treatment used for the cover thumbnail."""
     image = Image(str(image_path))
     image.drawWidth, image.drawHeight = image_size(image_path)
-
-    # Thin border around the screenshot, centered, with the alt text as a
-    # caption underneath — the same framed treatment as the cover thumbnail.
     frame = Table([[image]])
     frame.setStyle(
         TableStyle(
@@ -550,11 +573,28 @@ def add_image(
     )
     holder = Table([[frame]], colWidths=[CONTENT_WIDTH])
     holder.setStyle(TableStyle([("ALIGN", (0, 0), (-1, -1), "CENTER")]))
-    story.append(Spacer(1, 4))
-    story.append(holder)
-    if alt.strip():
-        story.append(Paragraph(escape_inline(alt), styles["cover_caption"]))
-    story.append(Spacer(1, 8))
+    flowables: list = [Spacer(1, 4), holder]
+    if caption.strip():
+        flowables.append(Paragraph(escape_inline(caption), styles["cover_caption"]))
+    flowables.append(Spacer(1, 8))
+    return flowables
+
+
+def add_optional_image(
+    story: list,
+    image_ref: str,
+    caption: str,
+    markdown_path: Path,
+    styles: dict[str, ParagraphStyle],
+) -> None:
+    """Embed a screenshot only if it exists; otherwise do nothing. Backs the
+    `<!-- optional-screenshot: file | caption -->` directive so a template can
+    carry a screenshot slot that fills automatically for clients who captured
+    it and leaves no trace for those who did not."""
+    image_path = resolve_screenshot(markdown_path, image_ref)
+    if image_path is None:
+        return
+    story.extend(framed_image_flowables(image_path, caption, styles))
 
 
 def priority_counts_from_rows(rows: list[list[str]]) -> list[tuple[str, int, str]]:
@@ -787,6 +827,18 @@ def build_story(
             flush_table()
             if story and not isinstance(story[-1], PageBreak):
                 story.append(PageBreak())
+            continue
+
+        directive = OPTIONAL_SCREENSHOT_RE.match(line.strip())
+        if directive:
+            flush_table()
+            add_optional_image(
+                story,
+                directive.group(1).strip(),
+                (directive.group(2) or "").strip(),
+                markdown_path,
+                styles,
+            )
             continue
 
         if line.startswith("<!--") and line.endswith("-->"):

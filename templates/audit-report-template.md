@@ -64,17 +64,9 @@ Compila una sezione per ogni problema rilevante emerso dalla checklist. Duplica 
 
 ### Screenshot (se disponibili)
 
-#### Desktop
+<!-- optional-screenshot: homepage-desktop-viewport.png | Anteprima della homepage (desktop) -->
 
-![Screenshot homepage desktop](../screenshots/homepage-desktop-viewport.png)
-
-<!-- pagebreak -->
-
-#### Mobile
-
-![Screenshot homepage mobile](../screenshots/homepage-mobile-viewport.png)
-
-<!-- pagebreak -->
+<!-- optional-screenshot: homepage-mobile-viewport.png | Anteprima della homepage (smartphone) -->
 
 ---
 
